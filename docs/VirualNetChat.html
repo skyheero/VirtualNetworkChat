@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="lib/fontawesome-free-5.13.0/css/all.min.css">
+    <!-- https://cdnjs.com/libraries/flag-icon-css -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="src/css/chat.css">
+    <link rel="stylesheet" href="src/css/loading.css">
+
+    <title>RTC Network</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="lib/gzip.min.js"></script>
+    <script src="lib/gunzip.min.js"></script>
+
+    <script src="src/js/users.js"></script>
+    <script src="src/js/obfuscated.js"></script>
+</header>
+
+<body class="text-center">
+    <!-- <i class="flag-icon flag-icon-tw"></i> -->
+    <!-- this icon's 1) style prefix == fas and 2) icon name == camera -->
+    <!-- <i class="fas fa-camera"></i> -->
+    <!-- using an <i> element to reference the icon -->
+    <!-- <span class="fas fa-camera"></span> -->
+    <!-- using a <span> element to reference the icon -->
+    <!-- <label>ID</label>
+    <input id="inUserID" type="text">
+    <swap id="swapNodeID">Node ID</swap><br>
+    <button id="btnJoin" onClick="onJoin()">Join</button><br>
+    <input id="inMsg" type="text"><br>
+    <button onClick="onSendMsg()">Send</button>
+    <div id="divChat"></div><br>
+    <div id="divLinke"></div><br>
+    <div id="divLog"></div><br>
+    <li class="active">
+        <div class="d-flex bd-highlight">
+            <div class="img_cont">
+                <i class="flag-icon fa-3x flag-icon-tw rounded-pill user_img"></i>
+                <span class="online_icon"></span>
+            </div>
+            <div class="user_info">
+                <span>Khalid</span>
+                <p>Kalid is online</p>
+            </div>
+        </div>
+    </li>
+    <h1>Hello, world!</h1> -->
+    <div class="container-fluid">
+
+        <div id="divJion" class="row justify-content-center" style="display: true;">
+            <form id="formJoinNet" class="form-signin">
+                <img class="mb-4" src="https://cdn.pixabay.com/photo/2013/07/12/19/16/internet-154450_960_720.png" alt="" width="188" height="180">
+                <h1 class="h3 mb-3 font-weight-normal">Enter User ID</h1>
+                <label for="inUserID" class="sr-only">User Name</label>
+                <input type="text" id="inUserID" class="form-control" placeholder="User ID" required="" autofocus="">
+                <!-- <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""> -->
+                <!-- <div class="checkbox mb-3">
+                    <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div> -->
+                <button id="btnJoin" class="btn btn-lg btn-primary btn-block" type="submit" value="Send">Jion Network</button>
+                <p class="mt-5 mb-3 font-weight-light font-weight-bold">©Makedream 2019-2020</p>
+                <swap id="swapNodeID">You can say anything you want. We don't record anything.</swap>
+            </form>
+        </div>
+        <div id="divAccordionMain" class="row justify-content-center" style="display: none;">
+
+            <div class="col-md-8  chat">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseUserList" aria-expanded="true" aria-controls="collapseUserList">
+                    <i class="fas fa-chevron-down"> UserList</i>
+                  </button>
+                <div id="collapseUserList" class="card mb-sm-3 mb-md-0 contacts_card collapse" data-parent="#divAccordionMain">
+                    <div class="card-header">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search..." name="" class="form-control search">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body contacts_body">
+                        <ui id="uiUserList" class="contacts">
+                            <li id="exUserList" class="active">
+                                <div class="d-flex bd-highlight">
+                                    <div class="img_cont">
+                                        <img id="imgUserIcon" class="rounded-pill user_img" src="https://twemoji.maxcdn.com/2/72x72/1f468-200d-2695-fe0f.png" alt="UnknowCountry">
+                                        <!-- <i class="flag-icon fa-3x flag-icon-tw rounded-pill user_img"></i> -->
+                                        <span class="online_icon"></span>
+                                    </div>
+                                    <div class="user_info">
+                                        <span id="spanUserID">Khalid</span>
+                                        <p id="pJionTime">Online from 1 mins ago</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ui>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+            <div class="col-md-8  chat">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseChat" aria-expanded="true" aria-controls="collapseChat">
+                    <i class="fas fa-chevron-down"> Chat</i>
+                  </button>
+                <div id="collapseChat" class="card show" data-parent="#divAccordionMain">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight">
+                            <div class="img_cont">
+                                <!-- <span class="fa-3x">&#x1f468;&#x200d;&#x2695;&#xfe0f;</span> -->
+                                <img id="imgSelfIcon" class="rounded-pill user_img" src="https://twemoji.maxcdn.com/2/72x72/1f468-200d-2695-fe0f.png" alt="UnknowCountry">
+                                <!-- <i id="iSelfCountry" class="flag-icon fa-3x rounded-circle user_img ">&#x1f9d5;</i> -->
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info">
+                                <span>Login ID：</span><span id="loginID"></span>
+                                <!-- <p>1767 Messages</p> -->
+                            </div>
+                            <!-- <div class="video_cam">
+                                <span><i class="fas fa-video"></i></span>
+                                <span><i class="fas fa-phone"></i></span>
+                            </div> -->
+                        </div>
+                        <!-- <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+                        <div class="action_menu">
+                            <ul>
+                                <li><i class="fas fa-user-circle"></i> View profile</li>
+                                <li><i class="fas fa-users"></i> Add to close friends</li>
+                                <li><i class="fas fa-plus"></i> Add to group</li>
+                                <li><i class="fas fa-ban"></i> Block</li>
+                            </ul>
+                        </div> -->
+                    </div>
+                    <div id="divChatBody" class="card-body msg_card_body">
+                        <div id="exRecMsg">
+                            <div class="d-flex justify-content-start mb-4">
+                                <div class="img_cont_msg">
+                                    <img id="imgUserIcon" class="rounded-pill user_img_msg" src="https://twemoji.maxcdn.com/2/72x72/1f468-200d-2695-fe0f.png" alt="UnknowCountry">
+                                    <span id="spanUserID" class="msg_name">Chang ShuHao</span>
+                                </div>
+                                <div class="msg_cotainer" style="min-width: 100px;max-width: 100%;">
+                                    <span id="spanMsg">Hi, how are you samim?</span>
+                                    <div style="position: initial;">
+                                        <span id="spanDate" class="msg_time">8:40 AM, Today</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="exSendMsg">
+                            <div class="d-flex justify-content-end mb-4">
+                                <div class="msg_cotainer_send" style="min-width: 100px;max-width: 100%;">
+                                    <span id="spanMsg" class="">Hi, how are you samim?</span>
+                                    <div style="position: initial;">
+                                        <span id="spanDate" class="msg_time_send">8:55 AM, Today</span>
+                                    </div>
+                                </div>
+                                <div class="img_cont_msg">
+                                    <img id="imgUserIcon" class="rounded-pill user_img_msg" src="https://twemoji.maxcdn.com/2/72x72/1f468-200d-2695-fe0f.png" alt="UnknowCountry">
+                                    <span id="spanUserID" class="msg_name_send">Chang ShuHao</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <!-- <div class="input-group-append">
+                                <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                            </div> -->
+                            <textarea id="textareaMsg" name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                            <div class="input-group-append">
+                                <span class="input-group-text send_btn" onclick="onSendMsg()"><i class="fas fa-location-arrow"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divLoading" class="overlay "></div>
+    <div id="divLoading" class="spanner ">
+        <div class="loader"></div>
+        <p>Connecting, please be patient.</p>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
+</body>
+
+</html>

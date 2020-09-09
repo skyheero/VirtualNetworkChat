@@ -1,0 +1,136 @@
+/* 左邊補0 */
+function padLeft(str, len) {    
+    str = '' + str;    
+    return str.length >= len ? str : new Array(len - str.length + 1).join("0") + str;
+} 
+/* 右邊補0 */
+function padRight(str, len) {    
+    str = '' + str;    
+    return str.length >= len ? str : str + new Array(len - str.length + 1).join("0");
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+    //The maximum is exclusive and the minimum is inclusive
+}
+
+function getRandomUserIcon() {
+    const index = getRandomInt(0, 110);
+    return users[index];
+}
+const userUnknow = { title: "人のシルエット", src: "https://twemoji.maxcdn.com/2/72x72/1f464.png" };
+const users = [
+    { title: "男性医療従事者", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-2695-fe0f.png" },
+    { title: "男性医療従事者", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-2695-fe0f.png" },
+    { title: "女性医療従事者", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-2695-fe0f.png" },
+    { title: "女性医療従事者", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-2695-fe0f.png" },
+    { title: "男子学生", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f393.png" },
+    { title: "男子学生", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f393.png" },
+    { title: "女子学生", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f393.png" },
+    { title: "女子学生", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f393.png" },
+    { title: "男性教師", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f3eb.png" },
+    { title: "男性教師", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f3eb.png" },
+    { title: "女性教師", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f3eb.png" },
+    { title: "女性教師", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f3eb.png" },
+    { title: "男性裁判官", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-2696-fe0f.png" },
+    { title: "男性裁判官", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-2696-fe0f.png" },
+    { title: "女性裁判官", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-2696-fe0f.png" },
+    { title: "女性裁判官", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-2696-fe0f.png" },
+    { title: "農家の男性", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f33e.png" },
+    { title: "農家の男性", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f33e.png" },
+    { title: "農家の女性", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f33e.png" },
+    { title: "農家の女性", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f33e.png" },
+    { title: "男性調理師", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f373.png" },
+    { title: "男性調理師", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f373.png" },
+    { title: "女性調理師", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f373.png" },
+    { title: "女性調理師", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f373.png" },
+    { title: "男性メカニック", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f527.png" },
+    { title: "男性メカニック", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f527.png" },
+    { title: "女性メカニック", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f527.png" },
+    { title: "女性メカニック", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f527.png" },
+    { title: "男性工場労働者", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f3ed.png" },
+    { title: "男性工場労働者", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f3ed.png" },
+    { title: "女性工場労働者", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f3ed.png" },
+    { title: "女性工場労働者", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f3ed.png" },
+    { title: "男性会社員", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f4bc.png" },
+    { title: "男性会社員", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f4bc.png" },
+    { title: "女性会社員", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f4bc.png" },
+    { title: "女性会社員", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f4bc.png" },
+    { title: "男性科学者", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f52c.png" },
+    { title: "男性科学者", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f52c.png" },
+    { title: "女性科学者", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f52c.png" },
+    { title: "女性科学者", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f52c.png" },
+    { title: "男性エンジニア", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f4bb.png" },
+    { title: "男性エンジニア", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f4bb.png" },
+    { title: "女性エンジニア", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f4bb.png" },
+    { title: "女性エンジニア", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f4bb.png" },
+    { title: "男性歌手", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f3a4.png" },
+    { title: "男性歌手", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f3a4.png" },
+    { title: "女性歌手", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f3a4.png" },
+    { title: "女性歌手", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f3a4.png" },
+    { title: "男性芸術家", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f3a8.png" },
+    { title: "男性芸術家", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f3a8.png" },
+    { title: "女性芸術家", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f3a8.png" },
+    { title: "女性芸術家", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f3a8.png" },
+    { title: "男性パイロット", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-2708-fe0f.png" },
+    { title: "男性パイロット", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-2708-fe0f.png" },
+    { title: "女性パイロット", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-2708-fe0f.png" },
+    { title: "女性パイロット", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-2708-fe0f.png" },
+    { title: "男性宇宙飛行士", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f680.png" },
+    { title: "男性宇宙飛行士", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f680.png" },
+    { title: "女性宇宙飛行士", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f680.png" },
+    { title: "女性宇宙飛行士", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f680.png" },
+    { title: "男性消防士", src: "https://twemoji.maxcdn.com/2/72x72/1f468-200d-1f692.png" },
+    { title: "男性消防士", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f468-200d-1f692.png" },
+    { title: "女性消防士", src: "https://twemoji.maxcdn.com/2/72x72/1f469-200d-1f692.png" },
+    { title: "女性消防士", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f469-200d-1f692.png" },
+    { title: "警察官", src: "https://twemoji.maxcdn.com/2/72x72/1f46e.png" },
+    { title: "警察官", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f46e.png" },
+    { title: "男性警察官", src: "https://twemoji.maxcdn.com/2/72x72/1f46e-200d-2642-fe0f.png" },
+    { title: "男性警察官", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f46e-200d-2642-fe0f.png" },
+    { title: "女性警察官", src: "https://twemoji.maxcdn.com/2/72x72/1f46e-200d-2640-fe0f.png" },
+    { title: "女性警察官", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f46e-200d-2640-fe0f.png" },
+    { title: "探偵", src: "https://twemoji.maxcdn.com/2/72x72/1f575.png" },
+    { title: "探偵", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f575.png" },
+    { title: "男性探偵", src: "https://twemoji.maxcdn.com/2/72x72/1f575-fe0f-200d-2642-fe0f.png" },
+    { title: "男性探偵", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f575-fe0f-200d-2642-fe0f.png" },
+    { title: "女性探偵", src: "https://twemoji.maxcdn.com/2/72x72/1f575-fe0f-200d-2640-fe0f.png" },
+    { title: "女性探偵", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f575-fe0f-200d-2640-fe0f.png" },
+    { title: "イギリス近衛兵", src: "https://twemoji.maxcdn.com/2/72x72/1f482.png" },
+    { title: "イギリス近衛兵", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f482.png" },
+    { title: "男性イギリス近衛兵", src: "https://twemoji.maxcdn.com/2/72x72/1f482-200d-2642-fe0f.png" },
+    { title: "男性イギリス近衛兵", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f482-200d-2642-fe0f.png" },
+    { title: "女性イギリス近衛兵", src: "https://twemoji.maxcdn.com/2/72x72/1f482-200d-2640-fe0f.png" },
+    { title: "女性イギリス近衛兵", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f482-200d-2640-fe0f.png" },
+    { title: "建設作業員", src: "https://twemoji.maxcdn.com/2/72x72/1f477.png" },
+    { title: "建設作業員", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f477.png" },
+    { title: "男性建設作業員", src: "https://twemoji.maxcdn.com/2/72x72/1f477-200d-2642-fe0f.png" },
+    { title: "男性建設作業員", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f477-200d-2642-fe0f.png" },
+    { title: "女性建設作業員", src: "https://twemoji.maxcdn.com/2/72x72/1f477-200d-2640-fe0f.png" },
+    { title: "女性建設作業員", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f477-200d-2640-fe0f.png" },
+    { title: "王子", src: "https://twemoji.maxcdn.com/2/72x72/1f934.png" },
+    { title: "王子", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f934.png" },
+    { title: "お姫様", src: "https://twemoji.maxcdn.com/2/72x72/1f478.png" },
+    { title: "お姫様", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f478.png" },
+    { title: "ターバンをかぶった人", src: "https://twemoji.maxcdn.com/2/72x72/1f473.png" },
+    { title: "ターバンをかぶった人", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f473.png" },
+    { title: "ターバンをかぶった男性", src: "https://twemoji.maxcdn.com/2/72x72/1f473-200d-2642-fe0f.png" },
+    { title: "ターバンをかぶった男性", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f473-200d-2642-fe0f.png" },
+    { title: "ターバンをかぶった女性", src: "https://twemoji.maxcdn.com/2/72x72/1f473-200d-2640-fe0f.png" },
+    { title: "ターバンをかぶった女性", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f473-200d-2640-fe0f.png" },
+    { title: "瓜皮帽をかぶった人", src: "https://twemoji.maxcdn.com/2/72x72/1f472.png" },
+    { title: "瓜皮帽をかぶった人", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f472.png" },
+    { title: "スカーフをかぶった女性", src: "https://twemoji.maxcdn.com/2/72x72/1f9d5.png" },
+    { title: "スカーフをかぶった女性", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f9d5.png" },
+    { title: "タキシードの男性", src: "https://twemoji.maxcdn.com/2/72x72/1f935.png" },
+    { title: "タキシードの男性", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f935.png" },
+    { title: "花嫁", src: "https://twemoji.maxcdn.com/2/72x72/1f470.png" },
+    { title: "花嫁", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f470.png" },
+    { title: "妊婦", src: "https://twemoji.maxcdn.com/2/72x72/1f930.png" },
+    { title: "妊婦", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f930.png" },
+    { title: "授乳", src: "https://twemoji.maxcdn.com/2/72x72/1f931.png" },
+    { title: "授乳", src: "https://s3-ap-northeast-1.amazonaws.com/emoji-img/v6_72/1f931.png" },
+    { title: "人のシルエット", src: "https://twemoji.maxcdn.com/2/72x72/1f464.png" }
+];
